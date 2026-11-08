@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Orbit Hub • Preview</title>
+<style>
+:root{--bg:#050309;--surface:#0D0A16;--high:#181230;--purple:#B347FF;--blue:#2F8BFF;--outline:#2A2145;--text:#EDE8FF;--muted:#9A90B8;--good:#3DDC97;--warn:#FFB84D;--bad:#FF5C7A}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+.app{max-width:520px;min-height:100dvh;margin:auto;padding-bottom:86px;background:radial-gradient(ellipse at 90% 0%,#17102c 0,transparent 38%),var(--bg)}
+main{padding:16px;display:grid;gap:12px}.header{padding:8px 4px 4px}.brand{font-size:30px;font-weight:850;letter-spacing:1px;background:linear-gradient(110deg,var(--purple),var(--blue));color:transparent;background-clip:text}.device{color:var(--muted);font-size:14px}
+.card{background:var(--surface);border:1px solid var(--outline);border-radius:24px;padding:16px;position:relative;overflow:hidden}.card:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,#b347ff88,#2f8bff44,transparent)}.card.blue{border-color:#24365a}.card h3{font-size:15px;margin:0 0 10px;font-weight:650;display:flex;align-items:center;gap:8px}.ic{color:var(--purple);font-size:18px}.blue .ic{color:var(--blue)}.title-right{margin-left:auto;font-size:11px;color:var(--muted);background:#ffffff08;padding:4px 8px;border-radius:30px}
+.overview{display:flex;justify-content:space-around;gap:4px;padding:10px 0 4px}.gauge{width:31%;text-align:center}.ring{width:82px;height:82px;margin:auto;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(var(--c) 0 68%,#2a2145 68% 75%,transparent 75%)}.ring:before{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--surface)}.ring b{z-index:1;font-size:16px}.gauge strong{display:block;font-size:13px;margin:7px 0 2px}.gauge small{display:block;font-size:10px;color:var(--muted);line-height:1.3}
+.rows{display:grid;gap:8px}.info{display:flex;justify-content:space-between;gap:12px;font-size:13px}.info span:first-child{color:var(--muted)}.info span:last-child{text-align:right}
+.banner{cursor:pointer}.banner p,.muted{color:var(--muted);font-size:13px;margin:0}.banner h3{color:var(--blue)}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);display:flex;justify-content:space-around;padding:9px 4px calc(9px + env(safe-area-inset-bottom));background:#050309f2;border-top:1px solid #1c1630;backdrop-filter:blur(18px);z-index:10}.nav button{border:0;background:none;color:var(--muted);font:11px system-ui;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 8px;min-width:58px}.nav button .ni{font-size:20px}.nav button.active{color:var(--purple)}.nav button.active .ni{filter:drop-shadow(0 0 8px #b347ff70)}
+.pagehead{padding:6px 2px 8px}.pagehead h1{font-size:24px;margin:0 0 4px}.pagehead p{color:var(--muted);margin:0;font-size:13px}
+.action{display:block;width:100%;border:1px solid #55327b;background:linear-gradient(100deg,#35144f,#15244b);color:var(--text);border-radius:14px;padding:12px;font-weight:650;margin-top:12px}
+.pill{font-size:11px;color:var(--good);background:#3ddc9718;padding:4px 8px;border-radius:20px}
+.game{display:flex;align-items:center;gap:12px}.gameicon{width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,#2b1450,#10284d);display:grid;place-items:center;font-size:22px}.game h4{margin:0;font-size:14px}.game small{color:var(--muted)}.game .pill{margin-left:auto}
+.profile{display:flex;justify-content:space-between;align-items:center}.profile h4{margin:0 0 3px}.profile p{margin:0;color:var(--muted);font-size:12px}
+.chart{height:90px;width:100%;margin-top:12px}.chart svg{width:100%;height:100%}
+.notice{color:var(--muted);font-size:12px;margin-top:10px}
+@media(min-width:430px){main{padding:20px}.ring{width:96px;height:96px}.gauge small{font-size:11px}}
+</style></head>
+  
+<!-- ORBIT HUB INTRO -->
+<style>
+#orbit-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #050309;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  animation: introExit 0.8s ease 2.8s forwards;
+}
+
+.orbit-logo {
+  width: 110px;
+  height: 110px;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  background:
+    linear-gradient(#050309,#050309) padding-box,
+    linear-gradient(135deg,#B347FF,#2F8BFF) border-box;
+  position: relative;
+  box-shadow: 0 0 35px #B347FF55;
+  animation: logoAppear 1s ease forwards;
+}
+
+.orbit-logo::before {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 3px solid #B347FF;
+  border-right-color: #2F8BFF;
+  border-radius: 50%;
+  transform: rotate(-35deg);
+  animation: orbitSpin 1.8s linear infinite;
+}
+
+.orbit-logo::after {
+  content: "✦";
+  position: absolute;
+  right: -8px;
+  top: 5px;
+  color: #fff;
+  font-size: 22px;
+  text-shadow: 0 0 15px #2F8BFF;
+}
+
+.orbit-title {
+  margin-top: 28px;
+  font: bold 28px system-ui;
+  letter-spacing: 5px;
+  background: linear-gradient(90deg,#B347FF,#2F8BFF);
+  color: transparent;
+  background-clip: text;
+  opacity: 0;
+  animation: textAppear 1s ease 0.7s forwards;
+}
+
+.orbit-subtitle {
+  color: #9A90B8;
+  font: 11px system-ui;
+  letter-spacing: 4px;
+  margin-top: 8px;
+  opacity: 0;
+  animation: textAppear 1s ease 1.2s forwards;
+}
+
+@keyframes orbitSpin {
+  to { transform: rotate(325deg); }
+}
+
+@keyframes logoAppear {
+  from { transform: scale(.3); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes textAppear {
+  to { opacity: 1; }
+}
+
+@keyframes introExit {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+#orbit-intro.skip {
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+</style>
+
+<div id="orbit-intro" onclick="this.classList.add('skip')">
+  <div class="orbit-logo"></div>
+  <div class="orbit-title">ORBIT HUB</div>
+  <div class="orbit-subtitle">GAMING EXPERIENCE</div>
+</div>
+
+<body><div class="app"><main id="content"></main>
+<nav class="nav">
+<button data-page="dashboard" class="active"><span class="ni">◫</span>Painel</button>
+<button data-page="library"><span class="ni">🎮</span>Jogos</button>
+<button data-page="profiles"><span class="ni">⚙</span>Perfis</button>
+<button data-page="monitor"><span class="ni">⌁</span>Monitor</button>
+<button data-page="shizuku"><span class="ni">◈</span>Shizuku</button>
+</nav></div>
+<script>
+const content=document.querySelector('#content');
+const card=(title,icon,body,blue=false)=>`<section class="card ${blue?'blue':''}"><h3><span class="ic">${icon}</span>${title}</h3>${body}</section>`;
+const row=(a,b)=>`<div class="info"><span>${a}</span><span>${b}</span></div>`;
+const gauge=(title,value,caption,color,percent)=>`<div class="gauge"><div class="ring" style="--c:${color};background:conic-gradient(${color} 0 ${percent}%,#2a2145 ${percent}% 75%,transparent 75%)"><b>${value}</b></div><strong>${title}</strong><small>${caption}</small></div>`;
+const header=`<div class="header"><div class="brand">ORBIT HUB</div><div class="device">Redmi Note 13 4G • Preview visual</div></div>`;
+function dashboard(){return header+
+card('Visão geral','◉',`<div class="overview">${gauge('RAM','68%','5,4 de 8 GB','var(--purple)',68)}${gauge('Armazenamento','42%','110 GB livres','var(--blue)',42)}${gauge('Bateria','76%','Descarregando','var(--good)',76)}</div>`)+
+`<section class="card blue banner" onclick="go('shizuku')"><h3><span class="ic">◈</span>Shizuku não conectado <span class="title-right">Configurar ›</span></h3><p>Sem Shizuku, alguns dados avançados ficam indisponíveis. Toque para configurar.</p></section>`+
+card('Memória RAM','▤',`<div class="rows">${row('Em uso','5,4 GB')}${row('Disponível','2,6 GB')}${row('Total','8 GB')}</div>`)+
+card('Armazenamento','▣',`<div class="rows">${row('Usado','146 GB')}${row('Livre','110 GB')}${row('Total','256 GB')}</div>`,true)+
+card('Bateria','▰',`<div class="rows">${row('Nível','76%')}${row('Estado','Descarregando')}${row('Fonte','Bateria')}${row('Temperatura','31,8 °C')}${row('Tensão','3.920 mV')}${row('Saúde (sistema)','Boa')}${row('Tecnologia','Li-ion')}</div>`)+
+card('Térmica','♨',`<div class="rows">${row('Nível térmico','Normal')}</div><p class="notice">Temperatura detalhada e zonas internas aparecem conforme permissões do sistema/Shizuku.</p>`,true)+
+card('Processador','▦',`<div class="rows">${row('Chip','Snapdragon 685')}${row('Núcleos','8')}${row('Arquitetura','arm64-v8a')}${row('Freq. máxima','2.800 MHz')}${row('Carga atual','Requer Shizuku')}</div>`)+
+card('GPU','▧',`<div class="rows">${row('Modelo','Adreno 610')}${row('Fabricante','Qualcomm')}${row('OpenGL ES','3.2')}</div>`,true)+
+card('Sistema','▣',`<div class="rows">${row('Aparelho','Redmi Note 13 4G')}${row('Versão','Android 15')}${row('Patch de segurança','—')}${row('Taxa da tela','120 Hz')}</div>`)}
+function library(){return header+`<div class="pagehead"><h1>Biblioteca de jogos</h1><p>Seus jogos em um só lugar.</p></div>`+
+card('Jogos instalados','🎮',`<div class="game"><div class="gameicon">🎯</div><div><h4>Blood Strike</h4><small>FPS • Instalado</small></div><span class="pill">Pronto</span></div><hr style="border:0;border-top:1px solid #211a35;margin:14px 0"><div class="game"><div class="gameicon">⛏️</div><div><h4>Minecraft</h4><small>Sandbox • Instalado</small></div><span class="pill">Pronto</span></div><button class="action" onclick="alert('Demo visual: ação não conectada ao Android.')">Atualizar biblioteca</button>`)+card('Sobre a biblioteca','ⓘ',`<p class="muted">A versão real identifica aplicativos instalados e permite abrir jogos. Esta prévia usa dados ilustrativos.</p>`)}
+function profiles(){return header+`<div class="pagehead"><h1>Perfis de desempenho</h1><p>Atalhos para preparar o aparelho para cada uso.</p></div>`+
+card('Modo equilibrado','◉',`<div class="profile"><div><h4>Equilibrado</h4><p>Uso diário • foco em estabilidade</p></div><span class="pill">Padrão</span></div>`)+
+card('Modo desempenho','⚡',`<div class="profile"><div><h4>Gaming</h4><p>Prioriza experiência em jogos</p></div><span class="title-right">Perfil</span></div><button class="action" onclick="alert('Demo visual: aplicação real depende do Shizuku.')">Aplicar perfil</button>`,true)+
+card('Modo economia','♧',`<div class="profile"><div><h4>Economia</h4><p>Reduz consumo em segundo plano</p></div><span class="title-right">Perfil</span></div><button class="action" onclick="alert('Demo visual: aplicação real depende do Shizuku.')">Aplicar perfil</button>`)+
+`<p class="notice">A interface real só executa alterações depois da confirmação do usuário.</p>`}
+function monitor(){return header+`<div class="pagehead"><h1>Monitor</h1><p>Histórico e métricas do dispositivo.</p></div>`+
+card('Memória RAM','▤',`<div class="profile"><b>68%</b><span class="pill">Em tempo real • demo</span></div><div class="chart"><svg viewBox="0 0 300 90" preserveAspectRatio="none"><defs><linearGradient id="fill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B347FF" stop-opacity=".35"/><stop offset="1" stop-color="#B347FF" stop-opacity="0"/></linearGradient></defs><path d="M0 65 L25 57 L50 62 L75 35 L100 45 L125 22 L150 37 L175 28 L200 49 L225 30 L250 40 L275 18 L300 26 L300 90 L0 90Z" fill="url(#fill)"/><path d="M0 65 L25 57 L50 62 L75 35 L100 45 L125 22 L150 37 L175 28 L200 49 L225 30 L250 40 L275 18 L300 26" fill="none" stroke="#B347FF" stroke-width="2"/></svg></div>`)+
+card('Carga da CPU','▦',`<span class="pill">Requer Shizuku</span><p class="notice">Apps comuns não podem ler a carga real da CPU em versões modernas do Android.</p>`,true)+
+card('Temperatura da bateria','♨',`<div class="profile"><b>31,8 °C</b><span class="pill">Normal</span></div>`)+
+card('FPS','⌁',`<span class="title-right">Indisponível</span><p class="notice">Contador de FPS não implementado. Não exibimos valores inventados.</p>`,true)+
+card('Fontes de dados','ⓘ',`<div class="rows">${row('RAM, bateria, armazenamento','Disponível')}${row('Carga da CPU','Indisponível')}${row('Zonas térmicas','Indisponível')}</div>`)}
+function shizuku(){return header+`<div class="pagehead"><h1>Integração Shizuku</h1><p>Permissões avançadas sem root.</p></div>`+
+card('Shizuku não encontrado','◈',`<span class="title-right">Não conectado</span><p class="muted">Instale e inicie o Shizuku para permitir ações avançadas sem root.</p><button class="action" onclick="alert('Demo visual: link externo não aberto.')">Obter o Shizuku</button><button class="action" onclick="alert('Demo visual: conexão não implementada no HTML.')">Verificar novamente</button>`)+
+card('Como ativar','ⓘ',`<div class="rows"><div>1. Instale o Shizuku.</div><div>2. Ative opções do desenvolvedor e depuração sem fio.</div><div>3. Inicie o serviço no Shizuku.</div><div>4. Autorize o Orbit Hub.</div></div>`)+
+card('O que o Orbit Hub faz','◈',`<p class="muted">• Lê carga da CPU e zonas térmicas.<br>• Define modo de jogo para apps compatíveis.<br>• Encerra processos em cache e alterna economia.<br><br>Nada é executado sem confirmação.</p>`,true)}
+const pages={dashboard,library,profiles,monitor,shizuku};
+function go(p){content.innerHTML=pages[p]();document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));window.scrollTo(0,0)}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));go('dashboard');
+</script></body></html>
