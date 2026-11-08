@@ -21,9 +21,7 @@ main{padding:16px;display:grid;gap:12px}.header{padding:8px 4px 4px}.brand{font-
 .chart{height:90px;width:100%;margin-top:12px}.chart svg{width:100%;height:100%}
 .notice{color:var(--muted);font-size:12px;margin-top:10px}
 @media(min-width:430px){main{padding:20px}.ring{width:96px;height:96px}.gauge small{font-size:11px}}
-</style></head>
-  
-<!-- ORBIT HUB INTRO -->
+</style>
 <style>
 #orbit-intro {
   position: fixed;
@@ -116,14 +114,15 @@ main{padding:16px;display:grid;gap:12px}.header{padding:8px 4px 4px}.brand{font-
   pointer-events: none;
 }
 </style>
-
+</head>
+  
+<body>
 <div id="orbit-intro" onclick="this.classList.add('skip')">
   <div class="orbit-logo"></div>
   <div class="orbit-title">ORBIT HUB</div>
   <div class="orbit-subtitle">GAMING EXPERIENCE</div>
 </div>
-
-<body><div class="app"><main id="content"></main>
+<div class="app"><main id="content"></main>
 <nav class="nav">
 <button data-page="dashboard" class="active"><span class="ni">◫</span>Painel</button>
 <button data-page="library"><span class="ni">🎮</span>Jogos</button>
